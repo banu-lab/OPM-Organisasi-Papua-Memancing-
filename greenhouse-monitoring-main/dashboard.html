@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Monitoring IoT</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="img/logo.png" alt="Logo" />
+        <span>Monitoring<strong>IoT</strong></span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="active">📊 Dashboard</a>
+        <a href="#">🌡 Sensor</a>
+        <a href="#">📈 Riwayat</a>
+        <a href="#">⚙ Pengaturan</a>
+        <a href="#" id="logoutBtn" class="logout">↩ Keluar</a>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1>Dashboard Monitoring</h1>
+          <p class="muted">Selamat datang kembali, pantau perangkat Anda di sini.</p>
+        </div>
+        <div class="topbar-actions">
+          <div class="status-pill"><span class="dot online"></span> Terhubung</div>
+          <div class="avatar">U</div>
+        </div>
+      </header>
+
+      <!-- Stats -->
+      <section class="stats-grid">
+        <div class="stat-card gradient-1">
+          <small>Suhu</small>
+          <h2 id="statSuhu">--°C</h2>
+          <span class="trend up">↑ Stabil</span>
+        </div>
+        <div class="stat-card gradient-2">
+          <small>Kelembapan</small>
+          <h2 id="statKelembapan">--%</h2>
+          <span class="trend up">↑ Normal</span>
+        </div>
+        <div class="stat-card gradient-3">
+          <small>Tekanan</small>
+          <h2 id="statTekanan">-- hPa</h2>
+          <span class="trend down">↓ Turun tipis</span>
+        </div>
+        <div class="stat-card gradient-4">
+          <small>Cahaya</small>
+          <h2 id="statCahaya">-- lx</h2>
+          <span class="trend up">↑ Cerah</span>
+        </div>
+      </section>
+
+      <!-- Chart + Table -->
+      <section class="dashboard-grid">
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Grafik Sensor</h3>
+            <select id="rangeSelect">
+              <option>24 Jam Terakhir</option>
+              <option>7 Hari</option>
+              <option>30 Hari</option>
+            </select>
+          </div>
+          <canvas id="sensorChart" height="120"></canvas>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Aktivitas Terbaru</h3>
+          </div>
+          <ul class="activity-list" id="activityList">
+            <li><span class="dot online"></span> Sensor A terhubung <small>2 mnt lalu</small></li>
+            <li><span class="dot warn"></span> Suhu naik di Ruang 1 <small>10 mnt lalu</small></li>
+            <li><span class="dot online"></span> Sinkronisasi data berhasil <small>15 mnt lalu</small></li>
+            <li><span class="dot off"></span> Sensor B offline <small>1 jam lalu</small></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h3>Data Sensor</h3>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Waktu</th><th>Sensor</th><th>Nilai</th><th>Status</th></tr>
+            </thead>
+            <tbody id="dataTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="js/dashboard.js"></script>
+  <script src="js/chart.js"></script>
+</body>
+</html>
